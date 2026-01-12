@@ -132,6 +132,25 @@ select * from personas
 where cedula like '09%'
 
 
+/*Buscar nulos*/
+select * from personas where hora_nacimiento is null
+
+select * from personas where estatura is not null
+select * from personas where estatura is null
+
+/*Comparar Diferentes*/
+
+select * from personas where estatura != 1.85
+select * from personas where estatura <> 1.85
+
+select * from personas where numero_hijos !=2 
+
+
+
+
+
+
+
 
 
 
