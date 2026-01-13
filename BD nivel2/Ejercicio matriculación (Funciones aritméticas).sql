@@ -114,79 +114,34 @@ select * from estudiante
 select * from cursos
 select * from matriculas
 
-/*Aqui en los retos (consultas) hice un plus, que consiste en hacer la misma consulta, pero lo contrario*/
+--Operadores aritméticos básicos --
+SELECT 10 + 5 AS suma,
+       10 - 5 AS resta,
+       10 * 5 AS multi,
+       10 / 2 AS division,
+       10 % 3 AS resto;
+	   
 
---1: Listar todos los estudiantes activos --
-
-select * from estudiante
-where estado = true
-
-select * from estudiante
-where estado = false
-
---2:  Mostrar los cursos con más de 3 créditos --
-select * from cursos
-where creditos > 3
-
-select * from cursos
-where creditos < 4
-
-
---3: Mostra los estudiante mayores de 20 años --
-select * from estudiante
-where edad > 20
-
-select * from estudiante
-where edad < 21
-
---4: Listar el nombre del estrudiante junto con el curso en el que esta matriculado --
-select es.nombres, cu.id_curso, cu.nombre_curso from estudiante es, cursos cu, matriculas ma
-where ma.id_estudiante = es.id_estudiante and ma.id_curso = cu.id_curso
-
---5: Mostrar los estudiantes que no estan matriculados en ningun curso --
-select es.id_estudiante, es.nombres
-from estudiante es
-where not exists(
-	select 1 -- El valor que se seleccione NO importa, solo importa si existe o no una fila. también se puede utilizar "*"--
-	from matriculas ma
-	where ma.id_estudiante = es.id_estudiante
-)
-
---6: Obtener el promedio de notas por curso.
-select sum(ma.nota_final)/count(es) as promedio
-from matriculas ma, estudiante es
-
-select avg(ma.nota_final) as promedio
-from matriculas ma
-
---7: Mostrar los estudiantes que tienen una nota mayor o igual a 8
-select es.id_estudiante, cu.nombre_curso ,es.nombres, ma.nota_final 
-from estudiante es, matriculas ma, cursos cu
-where ma.nota_final >= 8 and (ma.id_estudiante = es.id_estudiante and ma.id_curso = cu.id_curso) 
-
---8: Contar cuantos estudiantes hay por curso
 SELECT 
-    cu.id_curso,
-    cu.nombre_curso,
-    COUNT(es.id_estudiante) AS cantidad
-FROM cursos cu, estudiante es, matriculas ma
-WHERE ma.id_curso = cu.id_curso
-  AND ma.id_estudiante = es.id_estudiante
-GROUP BY cu.id_curso, cu.nombre_curso;
+    SUM(nota_final) AS suma_notas,
+    AVG(nota_final) AS promedio,
+    MIN(nota_final) AS nota_minima,
+    MAX(nota_final) AS nota_maxima,
+    COUNT(*) AS total_matriculas
+FROM matriculas;
 
 
---9: Mostrar los cursos que no tienen estudiante matriculados
+select 
+	abs(-10) as valor_absoluto,
+	round(4.2) as redondear,
+	ceil(4.2) as redondear_hacia_arriba,
+	floor(4.9) as redondear_hacia_abajo,
+	power(2,3) as potencia,
+	sqrt(16) as raiz_cuadrada,
+	mod(10, 3) as modulo -- este es el residuo ejemplo: 10 / 3 = 3 -> sobre 1
 
-select cu.id_curso, cu.nombre_curso 
-from cursos cu
-where not exists(
-	select 1
-	from matriculas ma
-	where ma.id_curso = cu.id_curso
-);
 
---10: Listar estudiantes ordenados por apellido de forma ascendente
-select * from estudiante es order by es.apellidos asc
+
 
 
 
