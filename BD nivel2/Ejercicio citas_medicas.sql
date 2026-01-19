@@ -229,3 +229,7 @@ JOIN especialidad esp ON me.id_especialidad = esp.id_especialidad
 JOIN factura fac ON ci.id_cita = fac.id_cita 
 GROUP BY esp.id_especialidad, esp.nombre
 
+
+
+
+
