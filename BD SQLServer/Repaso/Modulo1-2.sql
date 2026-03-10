@@ -1,5 +1,8 @@
 /* REPASO DE SAMPLEBD */
 
+USE SAMPLEDB
+GO
+
 /* 1.- TABLA: hcm.employees */
 
 select * from hcm.employees
