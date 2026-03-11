@@ -192,7 +192,7 @@ select * from clientes
 select cli.idCliente from clientes cli
 where cli.pais = 'Mexico'
 
--- Buscar todos lo nombre de clientes con idCliente de 
+-- Buscar todos lo nombre de clientes con idCliente de Mexico
 
 select nombre, ciudad from clientes 
 where idCliente in (select idCliente from clientes
